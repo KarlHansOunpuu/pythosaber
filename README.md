@@ -44,10 +44,27 @@ The project features:
 - Keystone 18650 battery holder with THT pins;  
 - A prototyping board;  
 - Male pin headers;  
-- Multicolored 0.2 mm$^{2}$ (24 AWG) stranded wires; 
+- Multicolored 0.2 mm2 (24 AWG) stranded wires; 
 - Heat shrink;   
 - PCB connector with pogo pins. I used [this specific product](https://www.etsy.com/listing/872178596/connecteur-pcb-interne-18a-8-x-2a?click_key=00da230c1a36d1d55ee2f35ddc81e8ef694433ab%3A872178596&click_sum=404b2f56&ref=shop_home_active_12) (not an affiliate link).  
 - Polycarbonate lightsaber blade;  
+
+## Wiring
+
+- The battery + is wired to the common line of the SPDT slide switch, the battery - is grounded.  
+- One line from the switch is wired to the B+ pin on the TC4056A charging module.  
+- The B- pin on the charging module is grounded.  
+- The second line from the switch is split:  
+    - One end is wired to the Scottky diode, whis is wired to the 5V pin on the QT Py RP2040.  
+    - The other end is wired to the the positive terminal of the capacitor, which is then wired to the +5V pin on the crystal chamber LED. The negative terminal of the capacitor is grounded.  
+- The QT Py RP2040 and QT Py Audio BFF are soldered together using pin headers, with the prototype board sandwiched between them.  
+- Buttons 1 and 2 are wired to the SDA and SCL pins respectively.  
+- The RX pin is wired to the 470 Ohm resistor, which is then wire to the DIN pin of the crystal chamber LED. Adafruit suggests the resistor to be closer *to the LED* than it is to the microcontroller.  
+- The DOUT pin of the crystal LED splits in two and is wired to the DIN pins of both Blade LED strips.  
+- The LSM6DSOX IMU is connected to the QT Py RP2040 using a STEMMA cable.  
+- The speaker is connected to the QT Py Audio BFF using the Molex Picoblade cable.  
+
+![wiring-diagram](images/wiring-diagram.jpg)  
 
 ## Sound
 
